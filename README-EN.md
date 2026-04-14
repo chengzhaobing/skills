@@ -28,6 +28,13 @@ npx @fce/skillforge install
 pnpm dlx @fce/skillforge install
 ```
 
+By default, the installer writes into `./.skills` in the current directory and follows this flow:
+
+1. choose `中文` or `English`
+2. choose `Install all` or `Custom selection`
+3. if custom mode is chosen, it starts empty and you select the skills you want
+4. after installation, show a message telling the user to point their AI at the installed files
+
 Install into a custom target directory:
 
 ```bash
@@ -38,6 +45,12 @@ Update previously installed skills:
 
 ```bash
 skillforge update --target ~/.codex/skills
+```
+
+Skip the picker and install everything:
+
+```bash
+skillforge install --all
 ```
 
 List packaged skills:
@@ -127,6 +140,16 @@ The package is designed to stay aligned with this repository and provides:
 - `skillforge install`
 - `skillforge update`
 - `skillforge list`
+
+The install experience is interactive by default:
+
+- arrow keys to move
+- space to toggle
+- `A` to toggle all
+- enter to confirm
+- default target directory: current working directory `./.skills`
+- language choice comes first
+- then the user chooses `Install all` or `Custom selection`
 
 Before publishing, it syncs the latest skill folders from the repo into the package, so npm releases follow the repository state.
 

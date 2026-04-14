@@ -5,7 +5,11 @@ const path = require("path");
 const packageRoot = path.resolve(__dirname, "..");
 const packagedSkillsDir = path.join(packageRoot, "skills");
 
-function resolveDefaultTarget() {
+function resolveDefaultTarget(cwd = process.cwd()) {
+  return path.join(cwd, ".skills");
+}
+
+function resolveCodexTarget() {
   const codexHome = process.env.CODEX_HOME;
   if (codexHome) {
     return path.join(codexHome, "skills");
@@ -39,16 +43,21 @@ function copyRecursive(source, target) {
   fs.copyFileSync(source, target);
 }
 
-function installSkills({ targetDir, overwrite }) {
+function installSkills({ targetDir, overwrite, only = [] }) {
   if (!fs.existsSync(packagedSkillsDir)) {
     throw new Error("No packaged skills found. Run `npm run sync-skills` before publishing.");
   }
 
   fs.mkdirSync(targetDir, { recursive: true });
 
+  const allowed = new Set(only.length ? only : listSkills());
   const copied = [];
   const skipped = [];
   for (const skillName of listSkills()) {
+    if (!allowed.has(skillName)) {
+      continue;
+    }
+
     const source = path.join(packagedSkillsDir, skillName);
     const target = path.join(targetDir, skillName);
 
@@ -70,5 +79,6 @@ function installSkills({ targetDir, overwrite }) {
 module.exports = {
   installSkills,
   listSkills,
+  resolveCodexTarget,
   resolveDefaultTarget
 };

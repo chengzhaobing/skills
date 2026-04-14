@@ -1,6 +1,6 @@
 {
   "name": "@fce/skillforge",
-  "version": "0.1.0",
+  "version": "0.1.5",
   "description": "Install and update the skills-all skill collection into your local Codex skills directory.",
   "license": "MIT",
   "type": "commonjs",

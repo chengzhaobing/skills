@@ -28,6 +28,13 @@ npx @fce/skillforge install
 pnpm dlx @fce/skillforge install
 ```
 
+默认会安装到当前目录下的 `.skills/`，并进入更完整的交互流程：
+
+1. 先选择 `中文 / English`
+2. 再选择 `下载全部 / 自定义下载`
+3. 如果选择自定义，默认一个都不选，再进入勾选式技能选择界面
+4. 安装完成后，提示用户“让 AI 使用该目录中的文件即可”
+
 安装到自定义目录：
 
 ```bash
@@ -38,6 +45,12 @@ skillforge install --target ~/.codex/skills
 
 ```bash
 skillforge update --target ~/.codex/skills
+```
+
+跳过交互，直接安装全部 skills：
+
+```bash
+skillforge install --all
 ```
 
 查看当前打包的 skill 列表：
@@ -132,6 +145,16 @@ skills-all/
 - `skillforge install`
 - `skillforge update`
 - `skillforge list`
+
+安装体验默认是交互式的：
+
+- 方向键移动
+- 空格键勾选
+- `A` 全选 / 取消全选
+- 回车确认安装
+- 默认目标目录为当前目录的 `.skills/`
+- 首先选择中英文语言
+- 然后选择“全部下载”或“自定义下载”
 
 也就是说，后续你只要更新这个仓库，再发布 npm 包，用户拿到的就是同步后的最新 skill 集合。
 
