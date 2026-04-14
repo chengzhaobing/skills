@@ -1,0 +1,45 @@
+{
+  "name": "@fce/skillforge",
+  "version": "0.1.0",
+  "description": "Install and update the skills-all skill collection into your local Codex skills directory.",
+  "license": "MIT",
+  "type": "commonjs",
+  "bin": {
+    "skillforge": "bin/skillforge.js"
+  },
+  "files": [
+    "bin",
+    "lib",
+    "scripts",
+    "skills",
+    "README.md",
+    "LICENSE"
+  ],
+  "scripts": {
+    "sync-skills": "node scripts/sync-skills.js",
+    "prepack": "node scripts/sync-skills.js",
+    "postinstall": "node scripts/postinstall.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "publishConfig": {
+    "access": "public"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/chengzhaobing/skills.git",
+    "directory": "npm-tool"
+  },
+  "homepage": "https://github.com/chengzhaobing/skills",
+  "bugs": {
+    "url": "https://github.com/chengzhaobing/skills/issues"
+  },
+  "keywords": [
+    "skills",
+    "codex",
+    "ai-skills",
+    "skillforge",
+    "cli"
+  ]
+}
